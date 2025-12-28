@@ -1,13 +1,112 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Lato&display=swap');
+@plugin "daisyui"{
+  themes: false;
+}
 
 @theme {
-    --color-primary: #1E40AF;
-    --color-secondary: #F59E0B;
-    --color-accent: #fd1d26;
+    --color-primary: #BA2D0B;
+    --color-secondary: #01110A;
+    --color-accent: #DBBEA1;
+    --color-green-1: #061610;
+    --color-green-2: #0E1C16;
+    --color-green-3: #14221C;
+
 
     --font-fira: "Fira Sans", sans-serif;
     --font-lato: "Lato", sans-serif;
+    --font-ice: "Iceland", sans-sherif;
+}
+
+.btn-primary{
+    background-color: #BA2D0B;
+}
+
+.perspective-1000 {
+    perspective: 1000px;
+}
+
+.animate-3d-card {
+    transform-style: preserve-3d;
+    animation: float3D 16s ease-in-out infinite;
+    will-change: transform;
+}
+
+.shadow-background {
+    background: radial-gradient(circle at center, rgba(255,255,255,0.2), rgba(255,255,255,0));
+    filter: blur(25px);
+    transform-style: preserve-3d;
+    animation: shadow3D 20s ease-in-out infinite;
+}
+
+/* MAIN CARD */
+@keyframes float3D {
+    /* ORIGINAL FLOAT — unchanged */
+    0%   { transform: rotateX(0deg) rotateY(0deg) translateZ(0) translateX(0) translateY(0); }
+    10%  { transform: rotateX(6deg) rotateY(12deg) translateZ(7px) translateX(4px) translateY(-3px); }
+    25%  { transform: rotateX(-4deg) rotateY(8deg) translateZ(10px) translateX(-6px) translateY(2px); }
+    35%  { transform: rotateX(8deg) rotateY(-10deg) translateZ(12px) translateX(5px) translateY(-4px); }
+
+    /* PRE-FLIP (same speed) */
+    45%  { transform: rotateX(8deg) rotateY(8deg) translateZ(14px) translateX(0) translateY(-10px); }
+
+    /* 🔥 SINGLE FLIP (FAST WINDOW) */
+    50%  { transform: rotateX(8deg) rotateY(368deg) translateZ(18px) translateX(0) translateY(-14px); }
+
+    /* POST-FLIP — BACK TO BASELINE */
+    55%  { transform: rotateX(8deg) rotateY(8deg) translateZ(14px) translateX(0) translateY(-10px); }
+
+    /* ORIGINAL FLOAT CONTINUES */
+    65%  { transform: rotateX(10deg) rotateY(15deg) translateZ(10px) translateX(6px) translateY(-5px); }
+    80%  { transform: rotateX(-8deg) rotateY(-12deg) translateZ(12px) translateX(-5px) translateY(4px); }
+    90%  { transform: rotateX(5deg) rotateY(8deg) translateZ(6px) translateX(3px) translateY(-2px); }
+    100% { transform: rotateX(0deg) rotateY(0deg) translateZ(0) translateX(0) translateY(0); }
+}
+
+/* SHADOW — synced */
+@keyframes shadow3D {
+    0%   { transform: translateX(0) translateY(0) scale(1); }
+    45%  { transform: translateX(0) translateY(6px) scale(0.9); }
+    50%  { transform: translateX(0) translateY(10px) scale(0.8); }
+    55%  { transform: translateX(0) translateY(6px) scale(0.9); }
+    100% { transform: translateX(0) translateY(0) scale(1); }
+}
+
+.fade-bottom {
+    mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+}
+
+.iphone-toggle {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 38px;
+    height: 20px;
+    background: #061610;
+    border-radius: 900px;
+    position: relative;
+    outline: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.iphone-toggle::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    top: 3px;
+    left: 3px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.iphone-toggle:checked {
+    background: #BA2D0B; /* green on */
+}
+
+.iphone-toggle:checked::after {
+    transform: translateX(18px);
 }
 
 html, body { margin: 0; padding: 0; height: 100%; }
